@@ -15,12 +15,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(
-            "CREATE TABLE " + DBSchema.USER_TABLE_NAME + "(" +
-            DBSchema.USER_NAME_COL + " VARCHAR(50) PRIMARY KEY," +
-            DBSchema.USER_PASS_COL + " VARCHAR(50) NOT NULL" +
-            ")"
-        );
+        DBSchema.createTable(db);
     }
 
     @Override
@@ -72,5 +67,16 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
 
         return true;
+    }
+
+    public void updateScore(String username, int score) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Object args[] = {username, score};
+        String query = "UPDATE " + DBSchema.USER_TABLE_NAME +
+            " SET " + DBSchema.USER_SCORE_COL + "=?" +
+            " WHERE " + DBSchema.USER_NAME_COL + "=?";
+
+        db.execSQL(query, args);
+        db.close();
     }
 }

@@ -41,8 +41,6 @@ public class MainActivityFragment extends Fragment {
                     intent.putExtra("username", username);
 
                     Utility.changeCurrUser(getActivity(), username, true);
-                    Utility.showToast(getActivity(), "Log-in success!");
-
                     startActivity(intent);
                 } else {
                     Utility.showToast(getActivity(), "Wrong username or password");

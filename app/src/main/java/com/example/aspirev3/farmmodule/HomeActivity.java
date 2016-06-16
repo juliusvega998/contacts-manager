@@ -1,15 +1,11 @@
 package com.example.aspirev3.farmmodule;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -40,22 +36,7 @@ public class HomeActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_logout) {
-            new AlertDialog.Builder(HomeActivity.this)
-                .setTitle("Logging out")
-                .setMessage("Are you sure you want to logout?")
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(HomeActivity.this, MainActivity.class);
-                        Toast.makeText(getBaseContext(), "Logging out...", Toast.LENGTH_SHORT).show();
-                        Utility.changeCurrUser(HomeActivity.this,null,false);
-                        startActivity(intent);
-                    }
-                })
-                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {}
-                }).show();
+            Utility.logout(HomeActivity.this);
             return true;
         }
 
@@ -64,21 +45,6 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        new AlertDialog.Builder(HomeActivity.this)
-            .setTitle("Logging out")
-            .setMessage("Are you sure you want to logout?")
-            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Intent intent = new Intent(HomeActivity.this, MainActivity.class);
-                    Toast.makeText(getBaseContext(), "Logging out...", Toast.LENGTH_SHORT).show();
-                    Utility.changeCurrUser(HomeActivity.this,null,false);
-                    startActivity(intent);
-                }
-            })
-            .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {}
-            }).show();
+        Utility.logout(HomeActivity.this);
     }
 }
