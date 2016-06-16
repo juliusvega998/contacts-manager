@@ -36,7 +36,7 @@ public class Utility {
         new AlertDialog.Builder(act)
             .setTitle("Logging out")
             .setMessage("Are you sure you want to logout?")
-            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     Intent intent = new Intent(act, MainActivity.class);
@@ -45,7 +45,7 @@ public class Utility {
                     act.startActivity(intent);
                 }
             })
-            .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+            .setNegativeButton("No", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {}
             }).show();

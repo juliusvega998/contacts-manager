@@ -13,6 +13,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         boolean isLoggedIn = settings.getBoolean("isLoggedIn", false);
 
@@ -28,11 +37,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         }
-
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
     }
 
     @Override

@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DBHelper extends SQLiteOpenHelper {
     public DBHelper (Context context) {
-        super(context, DBSchema.DB_NAME, null, 1);
+        super(context, DBSchema.DB_NAME, null, 3);
     }
 
     @Override
@@ -21,6 +21,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + DBSchema.USER_TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + DBSchema.CONTACT_TABLE_NAME);
         onCreate(db);
     }
 
@@ -71,11 +72,19 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public boolean addContact(String username, String name, int age) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Object[] args = {username, name, age};
-        Object[] dup_args = {name, age};
+        String[] args = {username, name, Integer.toString(age)};
         String query = "INSERT INTO " + DBSchema.CONTACT_TABLE_NAME +
             "(" + DBSchema.USER_NAME_COL + "," + DBSchema.CONTACT_NAME_COL + "," + DBSchema.CONTACT_AGE_COL + ") " +
             "VALUES (?,?,?)";
+        String check_dup_query = "SELECT * FROM " + DBSchema.CONTACT_TABLE_NAME +
+                " WHERE " + DBSchema.USER_NAME_COL + "=? AND " +
+                DBSchema.CONTACT_NAME_COL + "=? AND " +
+                DBSchema.CONTACT_AGE_COL + "=?";
+
+        Cursor c = db.rawQuery(check_dup_query, args);
+        if(c.getCount() > 0) {
+            return false;
+        }
 
         db.execSQL(query, args);
         db.close();

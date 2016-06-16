@@ -17,7 +17,8 @@
         android:hint="@string/name_hint"
         android:layout_alignParentTop="true"
         android:layout_alignEnd="@+id/age_add"
-        android:layout_alignStart="@+id/age_add" />
+        android:layout_alignStart="@+id/age_add"
+        android:inputType="textCapWords" />
 
     <EditText
         android:layout_width="wrap_content"
