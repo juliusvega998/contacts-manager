@@ -17,4 +17,9 @@
     <string name="title_activity_register">Register</string>
     <string name="contacts_name">Contact List</string>
     <string name="add_contact">Add New Contact</string>
+
+    <string name="title_activity_add_content">Add New Contact</string>
+    <string name="name_hint">Name</string>
+    <string name="age_hint">Age</string>
+    <string name="add_contact_name">Add Contact</string>
 </resources>

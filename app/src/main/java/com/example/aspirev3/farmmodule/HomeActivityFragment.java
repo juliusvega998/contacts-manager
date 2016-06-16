@@ -1,5 +1,6 @@
 package com.example.aspirev3.farmmodule;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -40,6 +41,13 @@ public class HomeActivityFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Utility.logout(getActivity());
+            }
+        });
+        add_contacts_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AddContactActivity.class);
+                startActivity(intent);
             }
         });
         return view;

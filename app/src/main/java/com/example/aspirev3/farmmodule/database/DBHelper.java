@@ -63,13 +63,22 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         c.close();
 
-        db.execSQL("INSERT INTO user (username, password) VALUES (?, ?)", args);
+        db.execSQL(query, args);
         db.close();
 
         return true;
     }
 
     public boolean addContact(String username, String name, int age) {
+        SQLiteDatabase db = this.getWritableDatabase();
         Object[] args = {username, name, age};
+        Object[] dup_args = {name, age};
+        String query = "INSERT INTO " + DBSchema.CONTACT_TABLE_NAME +
+            "(" + DBSchema.USER_NAME_COL + "," + DBSchema.CONTACT_NAME_COL + "," + DBSchema.CONTACT_AGE_COL + ") " +
+            "VALUES (?,?,?)";
+
+        db.execSQL(query, args);
+        db.close();
+        return true;
     }
 }

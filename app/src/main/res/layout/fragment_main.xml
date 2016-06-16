@@ -15,7 +15,7 @@
         android:id="@+id/username_field"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="41dp"
+        android:layout_marginTop="50dp"
         android:hint="@string/username_hint" />
 
     <EditText
@@ -24,9 +24,10 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/password_field"
+        android:hint="@string/password_hint"
         android:layout_below="@+id/username_field"
-        android:layout_centerHorizontal="true"
-        android:hint="@string/password_hint" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -44,7 +45,8 @@
         android:text="@string/reg_name"
         android:id="@+id/register"
         android:background="@color/green"
-        android:layout_centerVertical="true"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/login"
         android:layout_alignStart="@+id/login"
-        android:layout_marginTop="20dp" />
+        android:layout_alignEnd="@+id/login" />
 </RelativeLayout>

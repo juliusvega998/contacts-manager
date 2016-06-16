@@ -29,7 +29,7 @@ public class DBSchema {
                 CONTACT_NAME_COL + " VARCHAR(50) NOT NULL, " +
                 CONTACT_AGE_COL + " INT NOT NULL, " +
                 USER_NAME_COL + "VARCHAR(50) NOT NULL, " +
-                "PRIMARY KEY (" + CONTACT_NAME_COL + "," + CONTACT_AGE_COL + "), " +
+                "PRIMARY KEY (" + CONTACT_NAME_COL + "," + CONTACT_AGE_COL + "," + USER_NAME_COL + "), " +
                 "FOREIGN KEY " + USER_NAME_COL + " REFERENCES "
                     + USER_TABLE_NAME + "(" + USER_NAME_COL + ") ON DELETE CASCADE" +
             ")"
