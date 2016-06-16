@@ -69,14 +69,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public void updateScore(String username, int score) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Object args[] = {username, score};
-        String query = "UPDATE " + DBSchema.USER_TABLE_NAME +
-            " SET " + DBSchema.USER_SCORE_COL + "=?" +
-            " WHERE " + DBSchema.USER_NAME_COL + "=?";
-
-        db.execSQL(query, args);
-        db.close();
+    public boolean addContact(String username, String name, int age) {
+        Object[] args = {username, name, age};
     }
 }

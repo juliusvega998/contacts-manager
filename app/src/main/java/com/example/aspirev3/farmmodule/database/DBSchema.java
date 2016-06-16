@@ -11,7 +11,6 @@ public class DBSchema {
     public static final String USER_TABLE_NAME = "user";
     public static final String USER_NAME_COL = "username";
     public static final String USER_PASS_COL = "password";
-    public static final String USER_SCORE_COL = "score";
 
     public static final String CONTACT_TABLE_NAME = "contacts";
     public static final String CONTACT_NAME_COL = "name";
@@ -21,8 +20,7 @@ public class DBSchema {
         db.execSQL(
             "CREATE TABLE " + USER_TABLE_NAME + "(" +
                 USER_NAME_COL + " VARCHAR(50) PRIMARY KEY," +
-                USER_PASS_COL + " VARCHAR(50) NOT NULL," +
-                USER_SCORE_COL + "INT DEFAULT 0" +
+                USER_PASS_COL + " VARCHAR(50) NOT NULL" +
             ")"
         );
 
