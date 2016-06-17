@@ -1,6 +1,8 @@
 package com.example.aspirev3.farmmodule;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.aspirev3.farmmodule.adapter.ContactListAdapter;
+import com.example.aspirev3.farmmodule.database.DBHelper;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -21,12 +24,16 @@ public class ViewContactActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        String[] sample = {"123", "456", "789"};
+        final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+        String username = settings.getString("currUsername", null);
+        String[] contact_list = new DBHelper(getActivity()).getContacts(username);
+
         View view = inflater.inflate(R.layout.fragment_view_contact, container, false);
         RecyclerView rv = (RecyclerView) view.findViewById(R.id.contact_list);
 
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rv.setAdapter(new ContactListAdapter(sample));
+        rv.setAdapter(new ContactListAdapter(contact_list));
         return view;
     }
 }

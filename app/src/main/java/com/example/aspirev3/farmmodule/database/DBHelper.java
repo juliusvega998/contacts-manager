@@ -9,6 +9,7 @@ import android.util.Log;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 
 /**
  * Created by Aspire V3 on 6/15/2016.
@@ -111,6 +112,28 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(query, args);
         db.close();
         return true;
+    }
+
+    public String[] getContacts(String username) {
+        String query = "SELECT * FROM " + DBSchema.CONTACT_TABLE_NAME +
+                " WHERE " + DBSchema.USER_NAME_COL + "=?" +
+                " ORDER BY " + DBSchema.CONTACT_NAME_COL ;
+        String[] args = {username};
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<String> finalList = new ArrayList< >();
+
+        Cursor c = db.rawQuery(query, args);
+        if(c.getCount() > 0) {
+            c.moveToFirst();
+            while(!c.isAfterLast()) {
+                finalList.add("<h4>" + c.getString(0).replace("<", "&lt;").replace(">", "&gt;") + "</h4>"
+                        + c.getString(1));
+                c.moveToNext();
+            }
+        }
+        c.close();
+        db.close();
+        return finalList.toArray(new String[0]);
     }
 
     /*code from http://stackoverflow.com/questions/415953/*/

@@ -1,6 +1,7 @@
 package com.example.aspirev3.farmmodule.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +37,7 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mTextView.setText(mContacts[position]);
+        holder.mTextView.setText(Html.fromHtml(mContacts[position]));
     }
 
     @Override

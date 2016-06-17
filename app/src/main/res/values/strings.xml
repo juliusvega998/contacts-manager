@@ -25,4 +25,5 @@
     <string name="go_back">Go back</string>
 
     <string name="title_activity_view_contact">View Contacts</string>
+    <string name="def_value">Default</string>
 </resources>
