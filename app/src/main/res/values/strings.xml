@@ -22,4 +22,5 @@
     <string name="name_hint">Name</string>
     <string name="age_hint">Age</string>
     <string name="add_contact_name">Add Contact</string>
+    <string name="go_back">Go back</string>
 </resources>

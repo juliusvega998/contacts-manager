@@ -11,6 +11,7 @@ public class DBSchema {
     public static final String USER_TABLE_NAME = "user";
     public static final String USER_NAME_COL = "username";
     public static final String USER_PASS_COL = "password";
+    public static final String USER_SALT_COL = "salt";
 
     public static final String CONTACT_TABLE_NAME = "contacts";
     public static final String CONTACT_NAME_COL = "name";
@@ -19,8 +20,9 @@ public class DBSchema {
     public static void createTable(SQLiteDatabase db) {
         db.execSQL(
             "CREATE TABLE " + USER_TABLE_NAME + "(" +
-                USER_NAME_COL + " VARCHAR(50) PRIMARY KEY," +
-                USER_PASS_COL + " VARCHAR(50) NOT NULL" +
+                USER_NAME_COL + " VARCHAR(50) PRIMARY KEY, " +
+                USER_PASS_COL + " VARCHAR(64) NOT NULL, " +
+                USER_SALT_COL + " VARCHAR(30) NOT NULL" +
             ")"
         );
 

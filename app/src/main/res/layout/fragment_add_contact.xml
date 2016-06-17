@@ -36,9 +36,21 @@
         android:layout_height="wrap_content"
         android:text="@string/add_contact_name"
         android:id="@+id/add_contact_button"
-        android:background="@color/grey"
+        android:background="@color/green"
         android:layout_below="@+id/age_add"
         android:layout_marginTop="30dp"
         android:layout_alignStart="@+id/age_add"
         android:layout_alignEnd="@+id/age_add" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/go_back"
+        android:id="@+id/go_back"
+        android:layout_below="@+id/add_contact_button"
+        android:layout_marginTop="20dp"
+        android:layout_alignStart="@+id/add_contact_button"
+        android:layout_alignEnd="@+id/add_contact_button"
+        android:singleLine="true"
+        android:background="@color/grey" />
 </RelativeLayout>
