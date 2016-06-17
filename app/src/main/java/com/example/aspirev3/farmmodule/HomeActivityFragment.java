@@ -1,9 +1,7 @@
 package com.example.aspirev3.farmmodule;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,13 +28,12 @@ public class HomeActivityFragment extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         final Button contacts_button = (Button) view.findViewById(R.id.contacts_button);
-        final Button add_contacts_button = (Button) view.findViewById(R.id.add_contact_button);
+        final Button add_contacts_button = (Button) view.findViewById(R.id.edit_contact_button);
         final Button logout_button = (Button) view.findViewById(R.id.logout_button);
 
         final TextView title = (TextView) view.findViewById(R.id.title);
-        final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-        String username = settings.getString("currUsername", null);
+        String username = Utility.getUsername(getActivity());
         String greeting = "Hello " + username + "!";
 
         title.setText(greeting);

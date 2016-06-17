@@ -24,16 +24,18 @@ public class ViewContactActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getActivity());
-
+        final SharedPreferences settings = PreferenceManager.
+                getDefaultSharedPreferences(getActivity());
+        final DBHelper db = new DBHelper(getActivity());
         String username = settings.getString("currUsername", null);
-        String[] contact_list = new DBHelper(getActivity()).getContacts(username);
+        String[] html_contact_list = db.getHtmlContacts(username);
 
         View view = inflater.inflate(R.layout.fragment_view_contact, container, false);
         RecyclerView rv = (RecyclerView) view.findViewById(R.id.contact_list);
 
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rv.setAdapter(new ContactListAdapter(getActivity(), contact_list));
+        rv.setAdapter(new ContactListAdapter(getActivity(), db.getContacts(username),
+                html_contact_list));
         return view;
     }
 }

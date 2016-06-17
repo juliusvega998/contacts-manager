@@ -1,9 +1,6 @@
 package com.example.aspirev3.farmmodule;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,17 +22,16 @@ public class AddContactActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_add_contact, container, false);
-        final Button add_contact = (Button) view.findViewById(R.id.add_contact_button);
+        final Button add_contact = (Button) view.findViewById(R.id.edit_contact_button);
         final Button go_back = (Button) view.findViewById(R.id.go_back);
         final DBHelper db = new DBHelper(getActivity());
 
         add_contact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                String username = settings.getString("currUsername", null);
-                EditText name_field = (EditText) view.findViewById(R.id.name_add);
-                EditText age_field = (EditText) view.findViewById(R.id.age_add);
+                String username = Utility.getUsername(getActivity());
+                EditText name_field = (EditText) view.findViewById(R.id.name_edit);
+                EditText age_field = (EditText) view.findViewById(R.id.age_edit);
 
                 String name = name_field.getText().toString().trim();
                 int age = Integer.parseInt(age_field.getText().toString());
@@ -57,8 +53,7 @@ public class AddContactActivityFragment extends Fragment {
         go_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), HomeActivity.class);
-                startActivity(intent);
+                getActivity().onBackPressed();
             }
         });
 

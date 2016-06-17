@@ -50,4 +50,9 @@ public class Utility {
                 public void onClick(DialogInterface dialog, int which) {}
             }).show();
     }
+
+    public static String getUsername(Context c) {
+        final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(c);
+        return settings.getString("currUsername", null);
+    }
 }

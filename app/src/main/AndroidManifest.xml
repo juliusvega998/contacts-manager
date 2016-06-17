@@ -49,6 +49,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.aspirev3.farmmodule.HomeActivity" />
         </activity>
+        <activity
+            android:name=".EditContactsActivity"
+            android:label="@string/title_activity_edit_contacts"
+            android:parentActivityName=".ViewContactActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.aspirev3.farmmodule.ViewContactActivity" />
+        </activity>
     </application>
 
 </manifest>

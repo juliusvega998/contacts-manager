@@ -18,7 +18,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private Context mContext;
 
     public DBHelper (Context context) {
-        super(context, DBSchema.DB_NAME, null, 5);
+        super(context, DBSchema.DB_NAME, null, DBSchema.VERSION);
         this.mContext = context;
     }
 
@@ -95,7 +95,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public boolean addContact(String username, String name, int age) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String[] args = {username, name, Integer.toString(age)};
+        String[] args = {username, name.replace("<", "&lt;").replace(">", "&gt;"), Integer.toString(age)};
         String query = "INSERT INTO " + DBSchema.CONTACT_TABLE_NAME +
             "(" + DBSchema.USER_NAME_COL + "," + DBSchema.CONTACT_NAME_COL + "," + DBSchema.CONTACT_AGE_COL + ") " +
             "VALUES (?,?,?)";
@@ -114,6 +114,28 @@ public class DBHelper extends SQLiteOpenHelper {
         return true;
     }
 
+    public String[] getHtmlContacts(String username) {
+        String query = "SELECT * FROM " + DBSchema.CONTACT_TABLE_NAME +
+                " WHERE " + DBSchema.USER_NAME_COL + "=?" +
+                " ORDER BY " + DBSchema.CONTACT_NAME_COL ;
+        String[] args = {username};
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<String> finalList = new ArrayList< >();
+
+        Cursor c = db.rawQuery(query, args);
+        if(c.getCount() > 0) {
+            c.moveToFirst();
+            while(!c.isAfterLast()) {
+                finalList.add("<h4>" + c.getString(0) + "</h4>"
+                        + c.getString(1));
+                c.moveToNext();
+            }
+        }
+        c.close();
+        db.close();
+        return finalList.toArray(new String[0]);
+    }
+
     public String[] getContacts(String username) {
         String query = "SELECT * FROM " + DBSchema.CONTACT_TABLE_NAME +
                 " WHERE " + DBSchema.USER_NAME_COL + "=?" +
@@ -126,14 +148,38 @@ public class DBHelper extends SQLiteOpenHelper {
         if(c.getCount() > 0) {
             c.moveToFirst();
             while(!c.isAfterLast()) {
-                finalList.add("<h4>" + c.getString(0).replace("<", "&lt;").replace(">", "&gt;") + "</h4>"
-                        + c.getString(1));
+                finalList.add(c.getString(0) + " " + c.getString(1));
                 c.moveToNext();
             }
         }
         c.close();
         db.close();
         return finalList.toArray(new String[0]);
+    }
+
+    public void editContact(String username, String oldName, String oldAge, String newName, String newAge) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "UPDATE " + DBSchema.CONTACT_TABLE_NAME +
+                " SET " + DBSchema.CONTACT_NAME_COL + "=?, " + DBSchema.CONTACT_AGE_COL + "=?" +
+                " WHERE " + DBSchema.USER_NAME_COL + "=? AND " +
+                DBSchema.CONTACT_NAME_COL + "=? AND " +
+                DBSchema.CONTACT_AGE_COL + "=?";
+        String[] args = {newName, newAge, username, oldName, oldAge};
+
+        db.execSQL(query, args);
+        db.close();
+    }
+
+    public void deleteContact(String username, String name, String age) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "DELETE FROM " + DBSchema.CONTACT_TABLE_NAME +
+                " WHERE " + DBSchema.USER_NAME_COL + "=? AND " +
+                DBSchema.CONTACT_NAME_COL + "=? AND " +
+                DBSchema.CONTACT_AGE_COL + "=?";
+        String[] args = {username, name, age};
+
+        db.execSQL(query, args);
+        db.close();
     }
 
     /*code from http://stackoverflow.com/questions/415953/*/

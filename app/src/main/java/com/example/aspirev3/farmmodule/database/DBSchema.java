@@ -16,6 +16,9 @@ public class DBSchema {
     public static final String CONTACT_TABLE_NAME = "contacts";
     public static final String CONTACT_NAME_COL = "name";
     public static final String CONTACT_AGE_COL = "age";
+    public static final String CONTACT_ID_COL = "contact_id";
+
+    public static final int VERSION = 5;
 
     public static void createTable(SQLiteDatabase db) {
         db.execSQL(

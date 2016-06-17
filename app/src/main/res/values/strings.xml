@@ -26,4 +26,8 @@
 
     <string name="title_activity_view_contact">View Contacts</string>
     <string name="def_value">Default</string>
+
+    <string name="title_activity_edit_contacts">Edit Contact</string>
+    <string name="edit_contact_name">Edit Contact</string>
+    <string name="delete_contact_name">Delete Contact</string>
 </resources>
