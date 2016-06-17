@@ -12,11 +12,11 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/name_edit"
+        android:id="@+id/name_field"
         android:hint="@string/name_hint"
         android:layout_alignParentTop="true"
-        android:layout_alignEnd="@+id/age_edit"
-        android:layout_alignStart="@+id/age_edit"
+        android:layout_alignEnd="@+id/age_field"
+        android:layout_alignStart="@+id/age_field"
         android:inputType="textCapWords" />
 
     <EditText
@@ -24,9 +24,9 @@
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
         android:ems="10"
-        android:id="@+id/age_edit"
+        android:id="@+id/age_field"
         android:hint="@string/age_hint"
-        android:layout_below="@+id/name_edit"
+        android:layout_below="@+id/name_field"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp" />
 
@@ -35,10 +35,10 @@
         android:layout_height="wrap_content"
         android:text="@string/edit_contact_name"
         android:id="@+id/edit_contact_button"
-        android:layout_below="@+id/age_edit"
+        android:layout_below="@+id/age_field"
         android:layout_marginTop="30dp"
-        android:layout_alignStart="@+id/age_edit"
-        android:layout_alignEnd="@+id/age_edit"
+        android:layout_alignStart="@+id/age_field"
+        android:layout_alignEnd="@+id/age_field"
         android:background="@color/grey" />
 
     <Button

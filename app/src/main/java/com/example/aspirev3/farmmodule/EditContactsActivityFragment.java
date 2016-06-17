@@ -30,8 +30,8 @@ public class EditContactsActivityFragment extends Fragment {
         final Button go_back = (Button) view.findViewById(R.id.go_back);
         final Button edit_contact = (Button) view.findViewById(R.id.edit_contact_button);
         final Button delete_contact = (Button) view.findViewById(R.id.delete_contact_button);
-        final EditText name_field = (EditText) view.findViewById(R.id.name_edit);
-        final EditText age_field = (EditText) view.findViewById(R.id.age_edit);
+        final EditText name_field = (EditText) view.findViewById(R.id.name_field);
+        final EditText age_field = (EditText) view.findViewById(R.id.age_field);
 
         final String oldName = intent.getExtras().getString("name", "");
         final String oldAge = intent.getExtras().getString("age", "");

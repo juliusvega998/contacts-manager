@@ -22,7 +22,7 @@ public class AddContactActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_add_contact, container, false);
-        final Button add_contact = (Button) view.findViewById(R.id.edit_contact_button);
+        final Button add_contact = (Button) view.findViewById(R.id.add_contact_button);
         final Button go_back = (Button) view.findViewById(R.id.go_back);
         final DBHelper db = new DBHelper(getActivity());
 
@@ -30,8 +30,8 @@ public class AddContactActivityFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String username = Utility.getUsername(getActivity());
-                EditText name_field = (EditText) view.findViewById(R.id.name_edit);
-                EditText age_field = (EditText) view.findViewById(R.id.age_edit);
+                EditText name_field = (EditText) view.findViewById(R.id.name_field);
+                EditText age_field = (EditText) view.findViewById(R.id.age_field);
 
                 String name = name_field.getText().toString().trim();
                 int age = Integer.parseInt(age_field.getText().toString());
