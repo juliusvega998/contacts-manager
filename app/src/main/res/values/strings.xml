@@ -23,4 +23,6 @@
     <string name="age_hint">Age</string>
     <string name="add_contact_name">Add Contact</string>
     <string name="go_back">Go back</string>
+
+    <string name="title_activity_view_contact">View Contacts</string>
 </resources>

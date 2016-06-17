@@ -57,12 +57,7 @@ public class AddContactActivityFragment extends Fragment {
         go_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                String username = settings.getString("currUsername", null);
-
                 Intent intent = new Intent(getActivity(), HomeActivity.class);
-                intent.putExtra("username", username);
-
                 startActivity(intent);
             }
         });

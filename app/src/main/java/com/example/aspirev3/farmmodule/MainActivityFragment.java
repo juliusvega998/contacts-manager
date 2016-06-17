@@ -38,8 +38,6 @@ public class MainActivityFragment extends Fragment {
 
                 if(db.login(username, password) != null) {
                     Intent intent = new Intent(getActivity(), HomeActivity.class);
-                    intent.putExtra("username", username);
-
                     Utility.changeCurrUser(getActivity(), username, true);
                     startActivity(intent);
                 } else {

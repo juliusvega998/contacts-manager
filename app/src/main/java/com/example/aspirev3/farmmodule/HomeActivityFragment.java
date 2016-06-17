@@ -1,7 +1,9 @@
 package com.example.aspirev3.farmmodule;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,8 +34,9 @@ public class HomeActivityFragment extends Fragment {
         final Button logout_button = (Button) view.findViewById(R.id.logout_button);
 
         final TextView title = (TextView) view.findViewById(R.id.title);
+        final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-        String username = getActivity().getIntent().getExtras().getString("username");
+        String username = settings.getString("currUsername", null);
         String greeting = "Hello " + username + "!";
 
         title.setText(greeting);
@@ -43,10 +46,19 @@ public class HomeActivityFragment extends Fragment {
                 Utility.logout(getActivity());
             }
         });
+
         add_contacts_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), AddContactActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        contacts_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ViewContactActivity.class);
                 startActivity(intent);
             }
         });

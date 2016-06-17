@@ -47,10 +47,7 @@ public class RegisterActivityFragment extends Fragment {
                 }
                 else if (db.register(username, password)) {
                     Intent intent = new Intent(getActivity(), HomeActivity.class);
-                    intent.putExtra("username", username);
-
                     Utility.changeCurrUser(getActivity(), username, true);
-
                     Utility.showToast(getActivity(), "Registered!");
                     startActivity(intent);
                 } else {

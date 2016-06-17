@@ -21,7 +21,7 @@
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".RegisterActivity"
             android:label="@string/title_activity_register"
@@ -34,6 +34,15 @@
         <activity
             android:name=".AddContactActivity"
             android:label="@string/title_activity_add_content"
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.aspirev3.farmmodule.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".ViewContactActivity"
+            android:label="@string/title_activity_view_contact"
             android:parentActivityName=".HomeActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
