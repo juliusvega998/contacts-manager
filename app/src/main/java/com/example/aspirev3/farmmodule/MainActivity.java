@@ -26,13 +26,12 @@ public class MainActivity extends AppCompatActivity {
         boolean isLoggedIn = settings.getBoolean("isLoggedIn", false);
 
         if(isLoggedIn) {
-            Intent intent = new Intent(this, HomeActivity.class);
             String username = settings.getString("currUsername", null);
             if(username == null) {
                 Utility.changeCurrUser(settings, null, false);
                 Utility.showToast(getBaseContext(), "Forcing a logout");
             } else {
-                intent.putExtra("username", username);
+                Intent intent = new Intent(this, HomeActivity.class);
                 Utility.showToast(getBaseContext(), "Logging in...");
                 startActivity(intent);
             }

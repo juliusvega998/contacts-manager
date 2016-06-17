@@ -1,6 +1,9 @@
 package com.example.aspirev3.farmmodule;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -25,6 +28,19 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreateOptionsMenu(menu);
 
         return true;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        boolean isLoggedIn = settings.getBoolean("isLoggedIn", false);
+
+        if(!isLoggedIn) {
+            Intent intent = new Intent(this, MainActivity.class);
+            Utility.changeCurrUser(settings, null, false);
+            startActivity(intent);
+        }
     }
 
     @Override

@@ -33,7 +33,7 @@ public class ViewContactActivityFragment extends Fragment {
         RecyclerView rv = (RecyclerView) view.findViewById(R.id.contact_list);
 
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rv.setAdapter(new ContactListAdapter(contact_list));
+        rv.setAdapter(new ContactListAdapter(getActivity(), contact_list));
         return view;
     }
 }
